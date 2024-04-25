@@ -55,6 +55,7 @@ class UserCreateForm(UserCreationForm):
         if commit:
             user.save()
         return user 
+    
     def clean_email(self):
         if User.objects.filter(email=self.cleaned_data['email']).exists():
             raise forms.ValidationError(self.fields['email'].error_message['exists'])

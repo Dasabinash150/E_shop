@@ -47,3 +47,7 @@ def signup(request):
             'form':form,
         }
     return render(request,'registration/signup.html',context)
+
+def contact(request):
+    
+    return render(request, 'contact.html')
