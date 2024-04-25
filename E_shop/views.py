@@ -3,7 +3,7 @@ from django.http import HttpResponse
 
 
 # from django.template import Template , Context
-from app.models import Category,Product
+from app.models import Category,Product,Contact_us
 from django.contrib.auth import authenticate,login
 from app.models import UserCreateForm
 
@@ -49,5 +49,13 @@ def signup(request):
     return render(request,'registration/signup.html',context)
 
 def contact(request):
-    
+    if request.method == 'POST':
+        contact = Contact_us(
+            name = request.POST.get('name'),
+            email = request.POST.get('email'),
+            subject = request.POST.get('subject'),
+            message = request.POST.get('message')
+        )
+
+        contact.save()
     return render(request, 'contact.html')
